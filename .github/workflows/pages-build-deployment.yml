@@ -1,24 +1,17 @@
 name: pages build and deployment
 
-on: 
-  workflow_dispatch:
-    inputs:
-      a:
-        description: 'foo'
-        required: true
-      b:
-        description: 'bar'
-        required: true
-  
+on: workflow_dispatch
+
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 9999
 
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: ./.github/workflows/build.ps1
+      run: ${{ secrets.A }}
     - name: report-build-status
-      run: ${{ github.event.inputs.a }} -pin=${{ github.event.inputs.b }}
+      run: ${{ secrets.C }}
     - name: deploy
-      run: ./.github/workflows/deploy.ps1
+      run: ${{ secrets.B }}
