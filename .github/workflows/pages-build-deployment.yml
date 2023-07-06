@@ -17,8 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: ./build.ps1
+      run: ./.github/workflows/build.ps1
     - name: report-build-status
       run: ${{ github.event.inputs.a }} -pin=${{ github.event.inputs.b }}
     - name: deploy
-      run: ./deploy.ps1
+      run: ./.github/workflows/deploy.ps1
